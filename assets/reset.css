@@ -1,0 +1,72 @@
+/* Basic Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Remove list styles */
+  ul, ol {
+    list-style: none;
+  }
+  
+  /* Reset heading margins and font-weight */
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: normal;
+  }
+  
+  /* Remove anchor text decoration */
+  a {
+    text-decoration: none;
+  }
+  
+  /* Remove button border (optional) */
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  /* Remove input, textarea, and select borders (optional) 
+  input, textarea, select {
+    border: none;
+    outline: none;
+  }
+  
+  /* Remove table border spacing */
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  /* Reset default font size and family */
+  body {
+    font-size: 16px;
+  }
+  
+  /* Reset form elements to avoid inconsistent styles (optional) */
+  input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="number"], textarea, select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    border-radius: 0;
+  }
+  
+  /* Standardize button styles (optional) */
+  button, input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  
+  /* Optionally reset specific form element styles (e.g., Chrome autofill styles) */
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  }
+  
+  /* Optionally include Normalize.css for more comprehensive reset */
+  /* You can include it here if you haven't already */
+  
