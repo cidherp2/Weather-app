@@ -1,6 +1,5 @@
 var apiKey = "6f71eafd4d3a0cba318fb3ddf1f87ed1";
 var city = document.getElementById('cityNames');
-console.log(city);
 var city2 = "New York"
 const myButton = document.getElementById('botonCiudad');
 
