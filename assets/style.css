@@ -134,12 +134,12 @@ main{
 
 .forecastContainer{
     position: absolute;
-    bottom: 30%;
+    bottom: 28%;
     left: 25%;
     display: flex;
     justify-content: flex-end;
     justify-content: space-evenly;
-    height: 27vh;
+    height: 30vh;
     width: 70%;
    flex-flow: row wrap;
 
@@ -172,7 +172,7 @@ main{
 }
 
 .icon{
-    width: 50px;
+    width: 30px;
     height: auto;
 }
 

@@ -72,17 +72,17 @@ async function fetchWeather2(cityName,apiKey) {
         
         fechaTitulo.textContent = date;
         var tempCentigrados = ((data.list[i].main.temp)-273.15).toFixed(1);
-        temperaturaTitulo.textContent = tempCentigrados;
+        temperaturaTitulo.textContent = ("Temp: " + tempCentigrados+"°");
         console.log("El icono es " + data.list[i].weather[0].icon);
         var iconoClima =data.list[i].weather[0].icon;
          var iconSrc = (`http://openweathermap.org/img/w/${iconoClima}.png`);
          iconElement.src = iconSrc;
          iconoTitulo.appendChild(iconElement);
         var clima = data.list[i].weather[0].description;
-        var velocidadViento =  data.list[i].wind.speed;
-        vientoTitulo.textContent = velocidadViento;
+        var velocidadViento =  ((data.list[i].wind.speed)*3.6).toFixed(1);
+        vientoTitulo.textContent = ("Vel: "+velocidadViento+" Km/h");
         var porcentajeHumedad = data.list[i].main.humidity;
-        humedadTitulo.textContent = (porcentajeHumedad + "%");
+        humedadTitulo.textContent = ("Humidity: "+porcentajeHumedad + "%");
         console.log("La fecha es  " + data.list[i].dt_txt.split(" ")[0]);
          j++;
         }
