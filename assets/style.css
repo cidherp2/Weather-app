@@ -190,7 +190,6 @@ main{
     }
 
     .forecastContainer{
-    z-index: 900;
     position: absolute;
     top: 42%;
     display: flex;
@@ -213,6 +212,45 @@ main{
     }
 
     #sectionTitle{
+        padding-top: 3%;
+        display: flex;
+        font-size: 71%;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+
+    main{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .forecastContainer{
+    position: absolute;
+    top: 42%;
+    display: flex;
+    height: 100vh;
+    width: 70%;
+   flex-flow: column nowrap;
+   align-items: center;
+   justify-content: center;
+    }
+
+    .forecastCard{
+        width: 75%;
+        height: 45vh;
+    }
+
+    #ForecastTitle{
+       flex-direction: row;
+       justify-content: center;
+       padding-right: 10px;
+    }
+
+    #sectionTitle{
+        padding-top: 3%;
         display: flex;
         font-size: 71%;
     }
