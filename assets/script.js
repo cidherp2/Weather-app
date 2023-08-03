@@ -2,10 +2,28 @@ var apiKey = "6f71eafd4d3a0cba318fb3ddf1f87ed1";
 var city = document.getElementById('cityNames');
 var city2 = "New York"
 const myButton = document.getElementById('botonCiudad');
+var flag = 0;
 
-function saveText () {
+function removeIcons (){
+  var iconoTituloValidar = document.getElementById('icon-0');
+  var iconoTituloValidar2 = iconoTituloValidar.querySelector('img');
+  if (iconoTituloValidar2){
+  for (var j = 0; j<6; j++){
+var iconoTitulo = document.getElementById('icon-'+[j]);
+const iconoRemover = iconoTitulo.querySelector('img');
+iconoTitulo.removeChild(iconoRemover);
+}
+  }
+else{
+  console.log("que mira perro");
+}
+
+}
+
+function executeOnClick () { 
 cityValue = city.value;
 console.log(cityValue);
+removeIcons();
 fetchWeather(cityValue,apiKey);
 fetchWeather2(cityValue,apiKey);
 }
