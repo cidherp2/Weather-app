@@ -1,30 +1,14 @@
 var apiKey = "6f71eafd4d3a0cba318fb3ddf1f87ed1";
-var city = "Guadalajara";
+var city = document.getElementById('cityNames');
+console.log(city);
+var city2 = "New York"
+const myButton = document.getElementById('botonCiudad');
 
-async function fetchWeatherData(city,apiKey){
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`
-    try{
-     const response = await fetch(apiUrl); 
-      const data = await response.json();
-      console.log(data);
-    }catch (error){
-        console.error("error fetching data:", error);
-    }
-
-}
-
-async function fetchCoordinatesByName(cityName,stateCode = '', countryCode = '', limit = 1,apiKey){
-    console.log("its working");
-    const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${stateCode},${countryCode}&limit=${limit}&appid=${apiKey}`;
-    try{
-     const response = await fetch(apiUrl); 
-      const data = await response.json();
-      console.log(data);
-      return data;
-    }catch (error){
-        console.error("error fetching data:", error);
-        return null;
-    }
+function saveText () {
+cityValue = city.value;
+console.log(cityValue);
+fetchWeather(cityValue,apiKey);
+fetchWeather2(cityValue,apiKey);
 }
 
 async function fetchWeather(cityName,apiKey){
@@ -44,30 +28,67 @@ async function fetchWeather(cityName,apiKey){
 
 async function fetchWeather2(cityName,apiKey) {
     var data = await fetchWeather(cityName,apiKey);
+    var titulo = document.getElementById('sectionTitle');
+    var nombreCiudad = data.city.name;
+    titulo.textContent = nombreCiudad;
+   
+    
+
 
     if (data){
+      var diaDeHoy = data.list[0].dt_txt.split(" ")[0];
         let currentDay = null;
         let currentDayData = null;
-      for ( i=0 ; i < data.list.length-1; i++){
+        var j = 0;
+      for ( i=0 ; i < (data.list.length)-1; i++){
+        console.log("hola vuelta "+ j);
         var date = data.list[i].dt_txt.split(" ")[0];
+      
         if (date !== currentDay){
+        var fechaTitulo = document.getElementById('fecha'+j);
+        var temperaturaTitulo = document.getElementById('temp-'+[j]);
+        var vientoTitulo = document.getElementById('wind-'+[j]);
+        var humedadTitulo = document.getElementById('humidity-'+[j]);
+        var iconoTitulo = document.getElementById('icon-'+[j]);
+        const iconElement = document.createElement('img');
         currentDay = date;
-        console.log("la temperatura en kelvin es " + data.list[i].main.temp);
-        console.log("El clima es " + data.list[i].weather[0].description);
-        console.log("La velocidad del viento es de " + data.list[i].wind.speed);
-        console.log("La humedad es de " + data.list[i].main.humidity+"%");
+        
+        fechaTitulo.textContent = date;
+        var tempCentigrados = ((data.list[i].main.temp)-273.15).toFixed(1);
+        temperaturaTitulo.textContent = tempCentigrados;
+        console.log("El icono es " + data.list[i].weather[0].icon);
+        var iconoClima =data.list[i].weather[0].icon;
+         var iconSrc = (`http://openweathermap.org/img/w/${iconoClima}.png`);
+         iconElement.src = iconSrc;
+         iconoTitulo.appendChild(iconElement);
+        var clima = data.list[i].weather[0].description;
+        var velocidadViento =  data.list[i].wind.speed;
+        vientoTitulo.textContent = velocidadViento;
+        var porcentajeHumedad = data.list[i].main.humidity;
+        humedadTitulo.textContent = (porcentajeHumedad + "%");
         console.log("La fecha es  " + data.list[i].dt_txt.split(" ")[0]);
+         j++;
         }
+
+       
       }
+     
+        
+  
+
        
     }
+
+   
     else{
         console.log("data not available");
     }
 
+
+
 }
 
-fetchWeather2(city,apiKey);
-//fetchWeather(city);
-//fetchWeatherData(city,apiKey);
-//fetchCoordinatesByName(city,"","",1,apiKey);
+
+
+
+

@@ -8,7 +8,6 @@
     <title>Weather app</title>
     <link rel="stylesheet" href="/assets/reset.css">
     <link rel="stylesheet" href="/assets/style.css">
-    <script src="/assets/script.js"></script>
 </head>
 
 <body>
@@ -22,10 +21,10 @@
     <main>
         <section class="sideSearch">
             <div id="sectionTitle">
-                <h2 id="citySearch ">Search for a city</h2>
+                <h1 id="citySearch ">Search for a city</h1>
             </div>
             <input type="text" id="cityNames" placeholder="City">
-            <button id="botonCiudad" onclick="handleButtonClick()">Search</button>
+            <button id="botonCiudad" onclick="saveText()">Search</button>
             <br class="division">
             <div id="searchHistory">
                 <ul>
@@ -33,13 +32,74 @@
                 </ul>
             </div>
         </section>
-        <div id="moverDisplayMain">
-        <section class="displayMain">
-            <h1> Hola</h1>
-        </section>
-    </div>
+        <div class="displayMainContainer">
+            <div class="displayMain">
+
+                <div class="weatherContainer">
+                    <div>
+                        <h1 id = "fecha0">Ciudad y fecha</h1>
+                    </div>
+                    <div>
+                        <span class ="icon" id="icon-0"></span>
+                    </div>
+                    <div class="temp">
+                        <h3 id="temp-0">Temp</h3>
+                    </div>
+                    <div class="wind">
+                        <h3 id="wind-0">Wind</h3>
+                    </div>
+                    <div class="humidity">
+                        <h3 id="humidity-0">Humidity</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="forecastMover">
+            <div id="ForecastTitle">
+                <h1>5-Day Forecast</h1>
+            </div>
+            <section class="forecastContainer">
+                <div id="day1" class="forecastCard">
+                    <h3 id="fecha1">HS</h3>
+                    <div id="icon-1"></div>
+                    <h3 id="temp-1">Temp</h3>
+                    <h3 id="wind-1">Wind</h3>
+                    <h3 id="humidity-1">Humidity</h3>
+                </div>
+                <div id="day2" class="forecastCard">
+                    <h3 id="fecha2">HS</h3>
+                    <div id="icon-2"></div>
+                    <h3 id="temp-2">Temp</h3>
+                    <h3 id="wind-2">Wind</h3>
+                    <h3 id="humidity-2">Humidity</h3>
+                </div>
+                <div id="day3" class="forecastCard">
+                    <h3 id="fecha3">HS</h3>
+                    <div id="icon-3"></div>
+                    <h3 id="temp-3">Temp</h3>
+                    <h3 id="wind-3">Wind</h3>
+                    <h3 id="humidity-3">Humidity</h3>
+                </div>
+                <div id="day4" class="forecastCard">
+                    <h3 id="fecha4">HS</h3>
+                    <div id="icon-4"></div>
+                    <h3 id="temp-4">Temp</h3>
+                    <h3 id="wind-4">Wind</h3>
+                    <h3 id="humidity-4">Humidity</h3>
+                </div>
+                <div id="day5" class="forecastCard">
+                    <h3 id="fecha5">HS</h3>
+                    <div id="icon-5"></div>
+                    <h3 id="temp-5">Temp</h3>
+                    <h3 id="wind-5">Wind</h3>
+                    <h3 id="humidity-5">Humidity</h3>
+                </div>
+
+            </section>
+        </div>
     </main>
 
 </body>
+<script src="/assets/script.js"></script>
 
 </html>
