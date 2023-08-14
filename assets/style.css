@@ -11,6 +11,7 @@ body{
     width: 100%;
     margin: 0;
     box-sizing: content-box;
+    display: inline-block;
 }
 .main-header{
     width: 100%;
@@ -73,6 +74,20 @@ main{
   
     padding-top: 1vh;
     border-top: 1px solid rgb(171, 171, 171);
+    height: 75vh;
+}
+
+#search-History-List{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.listFormat{
+    margin-top: 1vh;
+}
+.listFormat:nth-child(1){
+    margin-top: 0;
 }
 
 #sectionTitle{
