@@ -7,7 +7,9 @@ var iconoTituloValidar2 = iconoTituloValidar.querySelector('img');
 var iconoTituloValidar3 = document.getElementById('icon-5');
 var iconoTituloValidar4 = iconoTituloValidar3.querySelector('img');
 let nombreCity = ' ';
+var index = 0;
 var flag = 0;
+//var indexHistorial = 0;
 
 function removeIcons() {
 
@@ -20,10 +22,6 @@ function removeIcons() {
     }
   }
 
-  //else {
-    //console.log("que mira perro2");
-  //}
-
   else  {
     for (var j = 0; j < 6; j++) {
       var iconoTitulo = document.getElementById('icon-' + [j]);
@@ -31,17 +29,11 @@ function removeIcons() {
       iconoTitulo.removeChild(iconoRemover);
     }
   }
-
-  //else {
-    //console.log("que mira perro");
-  //}
-
 }
 
 function createSearchHistory(cityName){
- 
-
   if (flag < 15){
+   
     if (nombreCity!=cityName){
   cityValue=ciudad.value;
   var botonCiudad = document.getElementById('search-History-List');
@@ -49,17 +41,35 @@ function createSearchHistory(cityName){
   var buttonElement = document.createElement('button');
   buttonElement.appendChild(document.createTextNode(cityName));
   buttonElement.classList.add('botonHistorial');
+buttonElement.setAttribute("id","historial"+[index]);
   listElement.classList.add('listFormat');
   listElement.appendChild(buttonElement);
   botonCiudad.appendChild(listElement);
   nombreCity = cityName;
+  index++;
     }
+else if (document.querySelector('.botonHistorial').textContent){
+}
+}
 
-  }
+  
   else{
     window.alert("Ya no se pueden agregar más ciudades al historial de búsqueda");
   }
   flag++;
+}
+
+function saveLocalStorage (){
+  var cityIds = [];
+  var getClass = document.querySelectorAll('.listFormat');
+  getClass.forEach((listFormat,index) =>{
+    cityIds.push('historial'+index);
+    console.log(cityIds);
+    index++;
+  });
+
+  
+ 
 }
 
 async function executeOnClick() {
@@ -78,8 +88,12 @@ async function executeOnClick() {
   else{
     window.alert("Escribe el nombre de una ciudad");
   }
+  saveLocalStorage();
   
 }
+
+
+
 
 async function fetchWeather(cityName, apiKey) {
   console.log("its working");
