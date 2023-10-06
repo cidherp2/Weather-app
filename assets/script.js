@@ -34,7 +34,9 @@ function removeIcons() {
 function createSearchHistory(cityName){
   if (flag < 15){
    
+    
     if (nombreCity!=cityName){
+    
   cityValue=ciudad.value;
   var botonCiudad = document.getElementById('search-History-List');
   var listElement = document.createElement('li');
@@ -57,6 +59,26 @@ else if (document.querySelector('.botonHistorial').textContent){
     window.alert("Ya no se pueden agregar más ciudades al historial de búsqueda");
   }
   flag++;
+ // searchHistory();
+}
+
+function searchHistory(){
+
+  const botonHistorial2 = document.querySelector('.botonHistorial');
+  const botonArray = Array.from(botonHistorial2);
+
+  if( botonArray){
+    console.log("HOLAAAAAESTOYQQHG");
+  botonArray.forEach(function(button) {
+    button.addEventListener('click', function (event) {
+     const clickedButton = event.target;
+    console.log(`Button "${clickedButton.textContent}" was clicked.`);
+    })
+  })
+  }
+  else {
+
+  }
 }
 
 function saveLocalStorage (){
@@ -84,11 +106,13 @@ async function executeOnClick() {
   removeIcons();
   }
   createSearchHistory(nombreCiudad);
+  searchHistory();
+
   }
   else{
     window.alert("Escribe el nombre de una ciudad");
   }
-  saveLocalStorage();
+  //saveLocalStorage();
   
 }
 
