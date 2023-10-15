@@ -62,24 +62,24 @@ else if (document.querySelector('.botonHistorial').textContent){
  // searchHistory();
 }
 
-function searchHistory(){
+// function searchHistory(){
 
-  const botonHistorial2 = document.querySelector('.botonHistorial');
-  const botonArray = Array.from(botonHistorial2);
+//   const botonHistorial2 = document.querySelector('.botonHistorial');
+//   const botonArray = Array.from(botonHistorial2);
 
-  if( botonArray){
-    console.log("HOLAAAAAESTOYQQHG");
-  botonArray.forEach(function(button) {
-    button.addEventListener('click', function (event) {
-     const clickedButton = event.target;
-    console.log(`Button "${clickedButton.textContent}" was clicked.`);
-    })
-  })
-  }
-  else {
+//   if( botonArray){
+//     console.log("HOLAAAAAESTOYQQHG");
+//   botonArray.forEach(function(button) {
+//     button.addEventListener('click', function (event) {
+//      const clickedButton = event.target;
+//     console.log(`Button "${clickedButton.textContent}" was clicked.`);
+//     })
+//   })
+//   }
+//   else {
 
-  }
-}
+//   }
+// }
 
 function saveLocalStorage (){
   var cityIds = [];
@@ -98,35 +98,71 @@ async function executeOnClick() {
   var cityValue = ciudad.value;
   var dataFromApi = await fetchWeather(cityValue, apiKey);
    nombreCiudad =  dataFromApi.city.name;
-  console.log(cityValue);  
   if (cityValue){
-    console.log("entro");
   fetchWeather2(cityValue, apiKey);
   if (document.getElementById('icon-0').querySelector('img')){
   removeIcons();
   }
   createSearchHistory(nombreCiudad);
-  searchHistory();
 
+  globalThis.botonHistorial2 =   document.querySelector('.botonHistorial');
+  // if ( globalThis.botonHistorial2){
+  //   searchHistory();
+  // }
+  
   }
   else{
     window.alert("Escribe el nombre de una ciudad");
+   
   }
+  
+ 
   //saveLocalStorage();
   
+}
+// async function searchHistory(){
+//   console.log(globalThis.botonHistorial2);
+//   const botonArray = Array.from(globalThis.botonHistorial2);
+//   console.log("HOLAAAAAESTOYQQHG");
+// botonArray.forEach(function(button) {
+//   console.log(button.textContent);
+//   button.addEventListener('click', function (event) {
+//    const clickedButton = event.target;
+//   console.log(`Button "${clickedButton.textContent}" was clicked.`);
+//   })
+// })
+// }
+
+  setupSearchHistoryListeners();
+
+
+
+function setupSearchHistoryListeners() {
+  const botonArray = Array.from(globalThis.botonHistorial2);
+  if (globalThis.botonHistorial2) {
+    botonArray.forEach(function (button) {
+      console.log(button.textContent);
+      button.addEventListener('click', function (event) {
+        const clickedButton = event.target;
+        console.log(`Button "${clickedButton.textContent}" was clicked.`);
+        // Add any additional functionality you need when a history button is clicked
+      });
+    });
+  }
 }
 
 
 
 
+
+
+
 async function fetchWeather(cityName, apiKey) {
-  console.log("its working");
+
   const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
-    console.log(data);
-    console.log("regresando data");
     return data;
   } catch (error) {
     console.error("error fetching data:", error);
@@ -151,7 +187,6 @@ async function fetchWeather2(cityName, apiKey) {
     let currentDayData = null;
     var j = 0;
     for (i = 0; i < ((data.list.length) - 1); i++) {
-      console.log("hola vuelta " + j);
       var date = data.list[i].dt_txt.split(" ")[0];
 
       if (date !== currentDay) {
@@ -168,7 +203,6 @@ async function fetchWeather2(cityName, apiKey) {
 
         var tempCentigrados = ((data.list[i].main.temp) - 273.15).toFixed(1);
         temperaturaTitulo.textContent = ("Temp: " + tempCentigrados + "°");
-        console.log("El icono es " + data.list[i].weather[0].icon + i + " cuelta");
         var iconoClima = data.list[i].weather[0].icon;
         var iconSrc = (`http://openweathermap.org/img/w/${iconoClima}.png`);
         iconElement.src = iconSrc;
@@ -178,9 +212,8 @@ async function fetchWeather2(cityName, apiKey) {
         vientoTitulo.textContent = ("Vel: " + velocidadViento + " Km/h");
         var porcentajeHumedad = data.list[i].main.humidity;
         humedadTitulo.textContent = ("Humidity: " + porcentajeHumedad + "%");
-        console.log("La fecha es  " + data.list[i].dt_txt.split(" ")[0]);
         j++;
-        console.log("este es ek numero de i: " + i);
+       
       }
     }
   }
